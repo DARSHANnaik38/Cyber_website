@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Crime Awareness</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* Navbar */
+nav {
+    background: #111;
+    padding: 15px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    margin: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover {
+    color: cyan;
+}
+
+/* Sections */
+section {
+    padding: 40px;
+    display: none;
+}
+.active {
+    display: block;
+}
+
+/* Home */
+#home {
+    display: block;
+    text-align: center;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+/* Form */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: none;
+}
+button:hover {
+    background: green;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<a onclick="show('home')">Home</a>
+<a onclick="show('types')">Types</a>
+<a onclick="show('prevention')">Prevention</a>
+<a onclick="show('complaint')">Complaint</a>
+<a onclick="show('feedback')">Feedback</a>
+<a onclick="show('login')">Login</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+<h1>Cyber Crime Awareness</h1>
+<p>Stay Safe | Stay Smart | Stay Secure</p>
+<p>Cyber crime is increasing day by day. Learn how to protect yourself.</p>
+</section>
+
+<!-- TYPES -->
+<section id="types">
+<h2>Types of Cyber Crimes</h2>
+
+<div class="card">
+<h3>Phishing</h3>
+<p>Fake emails or messages to steal personal information.</p>
+</div>
+
+<div class="card">
+<h3>Hacking</h3>
+<p>Unauthorized access to computer systems.</p>
+</div>
+
+<div class="card">
+<h3>Identity Theft</h3>
+<p>Stealing personal data like Aadhaar, bank details.</p>
+</div>
+
+<div class="card">
+<h3>Online Fraud</h3>
+<p>Fake shopping websites and payment scams.</p>
+</div>
+
+</section>
+
+<!-- PREVENTION -->
+<section id="prevention">
+<h2>Prevention Tips</h2>
+
+<div class="card">
+<p>✔ Use strong passwords</p>
+<p>✔ Do not share OTP</p>
+<p>✔ Avoid unknown links</p>
+<p>✔ Use antivirus software</p>
+<p>✔ Enable 2-factor authentication</p>
+</div>
+
+</section>
+
+<!-- COMPLAINT -->
+<section id="complaint">
+<h2>Register Complaint</h2>
+
+<form onsubmit="submitComplaint(event)">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Describe your issue" required></textarea>
+<button type="submit">Submit</button>
+</form>
+
+<p id="complaintMsg"></p>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback">
+<h2>Feedback</h2>
+
+<form onsubmit="submitFeedback(event)">
+<input type="text" placeholder="Your Name" required>
+<textarea placeholder="Your feedback" required></textarea>
+<button type="submit">Submit</button>
+</form>
+
+<p id="feedbackMsg"></p>
+</section>
+
+<!-- LOGIN -->
+<section id="login">
+<h2>Login / Register</h2>
+
+<div class="card">
+<h3>Register</h3>
+<input type="text" id="regUser" placeholder="Username">
+<input type="password" id="regPass" placeholder="Password">
+<button onclick="register()">Register</button>
+</div>
+
+<div class="card">
+<h3>Login</h3>
+<input type="text" id="loginUser" placeholder="Username">
+<input type="password" id="loginPass" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<p id="loginMsg"></p>
+</section>
+
+<script>
+function show(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+/* Complaint */
+function submitComplaint(e) {
+    e.preventDefault();
+    document.getElementById("complaintMsg").innerText = "Complaint submitted successfully!";
+}
+
+/* Feedback */
+function submitFeedback(e) {
+    e.preventDefault();
+    document.getElementById("feedbackMsg").innerText = "Thank you for your feedback!";
+}
+
+/* Simple Local Login */
+function register() {
+    let user = document.getElementById("regUser").value;
+    let pass = document.getElementById("regPass").value;
+
+    localStorage.setItem(user, pass);
+    alert("Registered Successfully!");
+}
+
+function login() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
+
+    let stored = localStorage.getItem(user);
+
+    if(stored === pass) {
+        document.getElementById("loginMsg").innerText = "Login Successful!";
+    } else {
+        document.getElementById("loginMsg").innerText = "Invalid Credentials!";
+    }
+}
+</script>
+
+</body>
+</html>
